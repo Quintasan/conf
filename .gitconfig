@@ -1,0 +1,13 @@
+[user]
+  name = Michał Zając
+  email = michal.zajac@gmail.com
+[push]
+  default = simple
+[alias]
+  s = status -s
+  glog = log --all --decorate --oneline --graph
+  master = checkout master
+[color]
+  branch = auto
+  diff   = auto
+  status = auto
