@@ -1,4 +1,4 @@
-ZSH=$HOME/config/oh-my-zsh
+ZSH=$HOME/conf/oh-my-zsh
 ZSH_THEME="bira"
 export UPDATE_ZSH_DAYS=10
 export DISABLE_CORRECTION="true"
