@@ -31,6 +31,10 @@ function deploy_configuration() {
   ln -s $HOME/conf/.vimrc.last $HOME/.vimrc.last
   echo "Symlinking ${HOME}/conf/.gitconfig to ${HOME}/.gitconfig"
   ln -s ${HOME}/conf/.gitconfig ${HOME}/.gitconfig
+  echo "Symlinking ${HOME}/conf/.zlogin to ${HOME}/.zlogin"
+  ln -s ${HOME}/conf/.zlogin ${HOME}/.zlogin
+  echo "Symlinking ${HOME}/conf/.profile to ${HOME}/.profile"
+  ln -s ${HOME}/conf/.profile ${HOME}/.profile
 }
 
 echo "Would you to like to deploy the configuration files to ${HOME} (y/n)? "
