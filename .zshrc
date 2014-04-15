@@ -1,17 +1,17 @@
+#RVM needs to be loaded before oh-my-zsh
+export PATH=$PATH:$HOME/.rvm/bin
+
+# Set up oh-my-zsh
 ZSH=$HOME/conf/oh-my-zsh
 ZSH_THEME="bira"
-export UPDATE_ZSH_DAYS=10
+export UPDATE_ZSH_DAYS=14
 export DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(debian kate command-not-found cp rvm)
+plugins=(debian command-not-found cp rvm)
 
-export EDITOR=vim
 source $ZSH/oh-my-zsh.sh
-source $HOME/.rvm/scripts/rvm
-export PATH=$PATH:$HOME/.rvm/bin
-alias exot=exit
-alias dir="dir --color=auto"
 
+# Custom stuff
 function mkcd() {
   mkdir $1 && cd $1
 }
