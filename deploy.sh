@@ -23,18 +23,18 @@ function deploy_configuration() {
   git submodule update
 
   echo "Symlinking ${HOME}/conf/.zshrc to ${HOME}/.zshrc"
-  ln -s $HOME/conf/.zshrc $HOME/.zshrc
+  ln -fs $HOME/conf/.zshrc $HOME/.zshrc
   echo "Symlinking ${HOME}/conf/vimconf/.vimrc to ${HOME}/.vimrc"
-  ln -s $HOME/conf/vimconf/.vimrc $HOME/.vimrc
+  ln -fs $HOME/conf/vimconf/.vimrc $HOME/.vimrc
   echo "Please start vim to fetch plugins"
   echo "Symlinking ${HOME}/conf/.vimrc.last to ${HOME}/.vimrc.last"
-  ln -s $HOME/conf/.vimrc.last $HOME/.vimrc.last
+  ln -fs $HOME/conf/.vimrc.last $HOME/.vimrc.last
   echo "Symlinking ${HOME}/conf/.gitconfig to ${HOME}/.gitconfig"
-  ln -s ${HOME}/conf/.gitconfig ${HOME}/.gitconfig
+  ln -fs ${HOME}/conf/.gitconfig ${HOME}/.gitconfig
   echo "Symlinking ${HOME}/conf/.zlogin to ${HOME}/.zlogin"
-  ln -s ${HOME}/conf/.zlogin ${HOME}/.zlogin
+  ln -fs ${HOME}/conf/.zlogin ${HOME}/.zlogin
   echo "Symlinking ${HOME}/conf/.profile to ${HOME}/.profile"
-  ln -s ${HOME}/conf/.profile ${HOME}/.profile
+  ln -fs ${HOME}/conf/.profile ${HOME}/.profile
 }
 
 echo "Would you to like to deploy the configuration files to ${HOME} (y/n)? "
