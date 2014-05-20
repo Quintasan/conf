@@ -1,0 +1,9 @@
+"Interact with GitHub Gists
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+
+"Preview the substitiution command
+Bundle 'osyo-manga/vim-over'
+
+"Visualize the undo tree
+Bundle 'sjl/gundo.vim'
