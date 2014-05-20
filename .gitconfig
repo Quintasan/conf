@@ -11,3 +11,5 @@
   branch = auto
   diff   = auto
   status = auto
+[github]
+	user = Quintasan
