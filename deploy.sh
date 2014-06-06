@@ -27,6 +27,12 @@ function deploy_configuration() {
   echo "Please start vim to fetch plugins"
   echo "Symlinking ${HOME}/conf/.vimrc.last to ${HOME}/.vimrc.last"
   ln -fs $HOME/conf/.vimrc.last $HOME/.vimrc.last
+  echo "Grab sum patched fonts"
+  mkdir -p $HOME/.fonts/p
+  wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf -O $HOME/.fonts/p/PowerLineSymbols.otf
+  mkdir -p $HOME/.config/fontconfig/conf.d/
+  wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf -O $HOME/.config/fontconfig/conf.d/10-powerline-symbols.conf
+  fc-cache -vf $HOME/.fonts
   echo "Symlinking ${HOME}/conf/.gitconfig to ${HOME}/.gitconfig"
   ln -fs ${HOME}/conf/.gitconfig ${HOME}/.gitconfig
   echo "Symlinking ${HOME}/conf/.vimrc.bundles to ${HOME}/.vimrc.bundles"
