@@ -30,7 +30,7 @@ function deploy_configuration() {
   echo "Symlinking ${HOME}/conf/.gitconfig to ${HOME}/.gitconfig"
   ln -fs ${HOME}/conf/.gitconfig ${HOME}/.gitconfig
   echo "Symlinking ${HOME}/conf/.vimrc.bundles to ${HOME}/.vimrc.bundles"
-  ln -fs ${HOME}/conf/.vimrc.bundles ${HOME}.vimrc.bundles
+  ln -fs ${HOME}/conf/.vimrc.bundles ${HOME}/.vimrc.bundles
 }
 
 echo "Would you to like to deploy the configuration files to ${HOME} (y/n)? "
