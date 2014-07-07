@@ -146,3 +146,6 @@ endfunction
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
+
+autocmd FileType python setlocal shiftwidth=4 tabstop=4
+filetype plugin on
