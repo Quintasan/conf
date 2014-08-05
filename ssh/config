@@ -1,0 +1,18 @@
+Host *
+  ServerAliveInterval 30
+
+Host shurelia
+  Hostname = shurelia.org
+
+Host frelia
+  Hostname = frelia.org
+
+Host demonbane
+  Hostname = 10.0.0.2
+  proxycommand = ssh shurelia nc %h %p
+
+Host git.debian.org
+  User = quintasan-guest
+
+Host *.iptv.k.pl
+  Port = 2222
