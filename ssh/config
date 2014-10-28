@@ -1,4 +1,7 @@
 Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/multiplex/%r@%h:%p
+  ControlPersist 1
   ServerAliveInterval 30
 
 Host shurelia
