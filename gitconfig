@@ -12,4 +12,8 @@
   diff   = auto
   status = auto
 [github]
-	user = Quintasan
+  user = Quintasan
+[url "git://git.debian.org/pkg-kde/"]
+  insteadOf = debian:
+[url "quintasan-guest@git.debian.org:/git/pkg-kde/"]
+  pushInsteadOf = debian:
