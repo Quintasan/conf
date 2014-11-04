@@ -10,6 +10,9 @@ Host shurelia
 Host frelia
   Hostname = frelia.org
 
+Host tramwaj
+  Hostname = tramwaj.asi.wroclaw.pl
+
 Host demonbane
   Hostname = 10.0.0.2
   proxycommand = ssh shurelia nc %h %p
