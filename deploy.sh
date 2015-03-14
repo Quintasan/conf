@@ -39,7 +39,7 @@ function deploy_configuration() {
   ln -fs ${HOME}/conf/gitconfig ${HOME}/.gitconfig
   echo "Symlinking ${HOME}/conf/ssh/config to ${HOME}/.ssh/config"
   mkdir -p ${HOME}/.ssh
-  mkdir -p %{HOME}/.ssh/multiplex
+  mkdir -p ${HOME}/.ssh/multiplex
   ln -fs ${HOME}/conf/ssh/config ${HOME}/.ssh/config
 }
 
