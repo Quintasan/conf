@@ -24,8 +24,8 @@ function deploy_configuration() {
   ln -fs ${HOME}/conf/zshrc ${HOME}/.zshrc
   echo "Symlinking ${HOME}/conf/vimconf/.vimrc to ${HOME}/.vimrc"
   ln -fs ${HOME}/conf/vimconf/.vimrc ${HOME}/.vimrc
-  echo "Symlinking ${HOME}/conf/vimrc.bundles to ${HOME}/.vimrc.bundles"
-  ln -fs ${HOME}/conf/vimrc.bundles ${HOME}/.vimrc.bundles
+  echo "Symlinking ${HOME}/conf/vimrc.plugins to ${HOME}/.vimrc.plugins"
+  ln -fs ${HOME}/conf/vimrc.plugins ${HOME}/.vimrc.plugins
   echo "Symlinking ${HOME}/conf/vimrc.last to ${HOME}/.vimrc.last"
   ln -fs ${HOME}/conf/vimrc.last ${HOME}/.vimrc.last
   echo "Please start vim to fetch plugins"
