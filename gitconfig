@@ -1,6 +1,7 @@
 [user]
   name = Michał Zając
   email = michal.zajac@gmail.com
+  signingkey = 79313F09
 [push]
   default = simple
 [alias]
@@ -17,3 +18,5 @@
   insteadOf = debian:
 [url "quintasan-guest@git.debian.org:/git/pkg-kde/"]
   pushInsteadOf = debian:
+[core]
+  editor = vim
