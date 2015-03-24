@@ -4,10 +4,13 @@
   signingkey = 79313F09
 [push]
   default = simple
+[pull]
+  rebase = preserve
 [alias]
   s = status -s
   glog = log --all --decorate --oneline --graph
   master = checkout master
+  lshow = diff-tree --no-commit-id --name-status -r
 [color]
   branch = auto
   diff   = auto
