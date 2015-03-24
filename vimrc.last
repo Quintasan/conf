@@ -157,5 +157,12 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
+let g:easytags_async = 1
+let g:easytags_file = "~/.vim/tags"
+let g:easytags_by_filetype = 1
+
+let g:syntastic_cpp_compiler = "clang++-3.5"
+let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++"
+
 autocmd FileType python setlocal shiftwidth=4 tabstop=4
 filetype plugin on
