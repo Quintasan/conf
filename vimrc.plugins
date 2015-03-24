@@ -7,3 +7,10 @@ Bundle 'osyo-manga/vim-over'
 
 "Visualize the undo tree
 Bundle 'sjl/gundo.vim'
+
+"Automatic tag generation
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-easytags'
+
+"Better(?) autocompletion
+Bundle 'Valloric/YouCompleteMe'
