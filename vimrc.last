@@ -27,3 +27,8 @@ let g:gundo_right = 1
 
 " Don't show the bufferline in the command bar
 let g:bufferline_echo = 0
+
+"
+let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_detect_filetype = 1
+let g:gist_post_private = 1

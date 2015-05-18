@@ -11,6 +11,7 @@
   glog = log --all --decorate --oneline --graph
   master = checkout master
   lshow = diff-tree --no-commit-id --name-status -r
+  co = checkout
 [color]
   branch = auto
   diff   = auto
@@ -23,3 +24,4 @@
   pushInsteadOf = debian:
 [core]
   editor = vim
+  excludesfile = /home/quintasan/.gitignore_global

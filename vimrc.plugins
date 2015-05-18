@@ -1,2 +1,6 @@
 "Visualize the undo tree
 Bundle 'sjl/gundo.vim'
+
+"Post to Gist
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
