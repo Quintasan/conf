@@ -38,7 +38,11 @@ function deploy_configuration() {
   echo "Symlinking ${HOME}/conf/gitconfig to ${HOME}/.gitconfig"
   ln -fs ${HOME}/conf/gitconfig ${HOME}/.gitconfig
   echo "Symlinking ${HOME}/conf/gitignore_global to ${HOME}/.gitignore_global"
-  ln -fs ${HOME}/conf/gitignore_global %{HOME}/.gitignore_global
+  ln -fs ${HOME}/conf/gitignore_global ${HOME}/.gitignore_global
+  echo "Symlinking ${HOME}/conf/gemrc to ${HOME}/.gemrc"
+  ln -fs ${HOME}/conf/gemrc ${HOME}/.gemrc
+  echo "Symlinking ${HOME}/conf/pryrc to ${HOME}/.pryrc"
+  ln -fs ${HOME}/conf/pryrc ${HOME}/.pryrc
   echo "Symlinking ${HOME}/conf/ssh/config to ${HOME}/.ssh/config"
   mkdir -p ${HOME}/.ssh
   mkdir -p ${HOME}/.ssh/multiplex
