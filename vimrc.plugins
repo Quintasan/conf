@@ -1,6 +1,18 @@
-"Visualize the undo tree
+" Visualize the undo tree
 Bundle 'sjl/gundo.vim'
 
-"Post to Gist
+" Post to Gist
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+
+" Select increasingly larger regions of text
+Bundle 'terryma/vim-expand-region'
+
+" We Rust now
+Bundle 'rust-lang/rust.vim'
+
+" We Docker now
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
+" Rainbow Parentheses
+Plugin 'luochen1990/rainbow'
