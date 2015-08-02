@@ -35,3 +35,13 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Vagrant #
+###########
+.vagrant
+
+# Editor backups and whatnot #
+##############################
+**/*~
+**/*.bak
+**/*.sw[abcdefghijklmnop]
