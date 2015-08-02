@@ -24,6 +24,8 @@ function deploy_configuration() {
   ln -fs ${HOME}/conf/zshrc ${HOME}/.zshrc
   echo "Symlinking ${HOME}/conf/vimconf/.vimrc to ${HOME}/.vimrc"
   ln -fs ${HOME}/conf/vimconf/.vimrc ${HOME}/.vimrc
+  echo "Symlinking ${HOME}/conf/.nvimrc to ${HOME}/.nvimrc"
+  ln -fs ${HOME}/conf/nvimrc ${HOME}/.nvimrc
   echo "Symlinking ${HOME}/conf/vimrc.plugins to ${HOME}/.vimrc.plugins"
   ln -fs ${HOME}/conf/vimrc.plugins ${HOME}/.vimrc.plugins
   echo "Symlinking ${HOME}/conf/vimrc.last to ${HOME}/.vimrc.last"
