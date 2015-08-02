@@ -4,6 +4,10 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# Load NVM
+export NVM_DIR="$HOME/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" ]
+
 # Set up oh-my-zsh
 ZSH=$HOME/conf/oh-my-zsh
 ZSH_THEME="bira"
