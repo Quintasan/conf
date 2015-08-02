@@ -1,0 +1,125 @@
+# Codenames for Debian suites according to their alias. Update these when
+# needed.
+UNSTABLE_CODENAME="sid"
+TESTING_CODENAME="jessie"
+STABLE_CODENAME="wheezy"
+
+# List of Debian suites.
+DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME
+    "experimental" "unstable" "testing" "stable")
+
+# List of Ubuntu suites. Update these when needed.
+UBUNTU_SUITES=("trusty" "utopic" "vivid")
+case "$dist" in
+    t)
+        dist="trusty"
+        ;;
+    u)
+        dist="utopic"
+        ;;
+    v)
+        dist="vivid"
+        ;;
+esac
+
+# Mirrors to use. Update these to your preferred mirror.
+DEBIAN_MIRROR="ftp.pl.debian.org"
+UBUNTU_MIRROR="ftp.vectranet.pl"
+
+# Optionally use the changelog of a package to determine the suite to use if
+# none set.
+if [ -z "${dist}" ] && [ -r "debian/changelog" ]; then
+    dist=$(dpkg-parsechangelog | awk '/^Distribution: / {print $2}')
+    # Use the unstable suite for Debian experimental packages.
+    if [ "${dist}" == "experimental" ]; then
+        dist="$UNSTABLE_CODENAME"
+    fi
+fi
+
+# Optionally set a default distribution if none is used. Note that you can set
+# your own default (i.e. ${dist:="unstable"}).
+: ${dist:="$(lsb_release --short --codename)"}
+
+# Optionally change Debian codenames in $dist to their aliases.
+case "$dist" in
+    $UNSTABLE_CODENAME)
+        dist=$UNSTABLE_CODENAME
+        ;;
+    $TESTING_CODENAME)
+        dist=$TESTING_CODENAME
+        ;;
+    $STABLE_CODENAME)
+        dist=$STABLE_CODENAME
+        ;;
+esac
+
+# Optionally set the architecture to the host architecture if none set. Note
+# that you can set your own default (i.e. ${ARCH:="i386"}).
+: ${ARCH:="$(dpkg --print-architecture)"}
+
+NAME="$dist"
+
+if [ ! -z "$pro" ]; then
+    NAME="$NAME-$pro"
+fi
+
+if [ -n "${ARCH}" ]; then
+    NAME="$NAME-$ARCH"
+    DEBOOTSTRAPOPTS=("--arch" "$ARCH" "${DEBOOTSTRAPOPTS[@]}")
+fi
+
+if [ -n "$main" ]; then
+    COMPONENTS="main restricted"
+    NAME="$NAME-main"
+else
+    COMPONENTS="main restricted universe multiverse"
+fi
+
+# Edit the paths here, I usually keep it in my /home
+BASETGZ="/home/quintasan/Packaging/pbuilder/$NAME-base.tgz"
+BASEPATH="/home/quintasan/Packaging/pbuilder/$NAME.cow"
+DISTRIBUTION="$dist"
+BUILDRESULT="/home/quintasan/Packaging/pbuilder/$NAME/result/"
+APTCACHE="/var/cache/apt/archives/"
+BUILDPLACE="/home/quintasan/Packaging/pbuilder/buildplace"
+PBUILDERROOTCMD="sudo -E"
+
+if $(echo ${DEBIAN_SUITES[@]} | grep -q $dist); then
+    # Debian configuration
+    MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
+    COMPONENTS="main contrib non-free"
+    DEBOOTSTRAPOPTS=(
+    "${DEBOOTSTRAPOPTS[@]}"
+    '--keyring=/usr/share/keyrings/debian-archive-keyring.gpg'
+    )
+elif $(echo ${UBUNTU_SUITES[@]} | grep -q $dist); then
+    # Ubuntu configuration
+    MIRRORSITE="http://archive.ubuntu.com/ubuntu/"
+    OTHERMIRROR="deb http://$UBUNTU_MIRROR/ubuntu/ $dist $COMPONENTS|deb http://$UBUNTU_MIRROR/ubuntu/ $dist-updates $COMPONENTS|deb http://$UBUNTU_MIRROR/ubuntu/ $dist-proposed $COMPONENTS|deb http://archive.ubuntu.com/ubuntu/ $dist-updates $COMPONENTS|deb http://archive.ubuntu.com/ubuntu/ $dist-proposed $COMPONENTS"
+elif $(echo ${TANGLU_SUITES[@]} | grep -q $dist); then
+    # Tanglu configuration
+    MIRRORSITE="http://$TANGLU_MIRROR/tanglu/"
+    COMPONENTS="main contrib non-free"
+    DEBOOTSTRAPOPTS=(
+    "${DEBOOTSTRAPOPTS[@]}"
+    '--keyring=/usr/share/keyrings/tanglu-archive-keyring.gpg'
+    )
+else
+    echo "Unknown distribution: $dist"
+    exit 1
+fi
+
+#Get our magical hook: bzr branch lp:~kubuntu-members/pbuilder/pbuilder-hooks
+#Change the directory of course :)
+HOOKDIR="/home/quintasan/Packaging/pbuilder/pbuilder-hooks"
+#Editor of choice
+export EDITOR="vim"
+PKGNAME_LOGFILE_EXTENTION="_$(dpkg --print-architecture).build"
+PKGNAME_LOGFILE=yes
+export DH_VERBOSE=1
+COMPRESSPROG=pigz
+ALLOWUNTRUSTED=yes
+APTCACHEHARDLINK=no
+
+DEBBUILDOPTS="-sa" # always include the source in the changes file
+EXTRAPACKAGES="vim"

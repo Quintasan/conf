@@ -1,0 +1,6 @@
+[DEFAULT]
+default_host_main = unicorn
+
+[unicorn]
+fqdn = INVISIBLE.PINK.UNICORN
+incoming = /
