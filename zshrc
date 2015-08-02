@@ -14,7 +14,7 @@ ZSH_THEME="bira"
 export UPDATE_ZSH_DAYS=14
 export DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(debian command-not-found cp rvm virtualenvwrapper colorize colored-man vagrant)
+plugins=(debian command-not-found cp rvm virtualenvwrapper colorize colored-man git-flow-avh vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
