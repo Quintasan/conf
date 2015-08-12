@@ -90,6 +90,9 @@ set wildignore=*.a,*.o,*.so,*.pyc,*.jpg,
 set wildmenu
 set wildmode=longest,list
 
+" Spellchecking!
+set complete+=kspell
+
 " More natural splits
 set splitbelow
 set splitright
@@ -125,6 +128,8 @@ nnoremap k gk
 
 " Ex more pls go
 map Q <nop>
+
+nmap <silent> <leader>s :set spell!<CR>
 
 """"" Plugin specific settings
 
