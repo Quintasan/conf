@@ -22,17 +22,21 @@ function deploy_configuration() {
 
   echo "Symlinking ${HOME}/conf/zshrc to ${HOME}/.zshrc"
   ln -fs ${HOME}/conf/zshrc ${HOME}/.zshrc
-  echo "Symlinking ${HOME}/conf/nvimrc to ${HOME}/.nvimrc"
-  ln -fs ${HOME}/conf/nvimrc ${HOME}/.nvimrc
+
   echo "Symlinking ${HOME}/conf/vimconf/.vimrc to ${HOME}/.vimrc"
   ln -fs ${HOME}/conf/vimconf/.vimrc ${HOME}/.vimrc
-  echo "Symlinking ${HOME}/conf/.nvimrc to ${HOME}/.nvimrc"
-  ln -fs ${HOME}/conf/nvimrc ${HOME}/.nvimrc
   echo "Symlinking ${HOME}/conf/vimrc.plugins to ${HOME}/.vimrc.plugins"
   ln -fs ${HOME}/conf/vimrc.plugins ${HOME}/.vimrc.plugins
   echo "Symlinking ${HOME}/conf/vimrc.last to ${HOME}/.vimrc.last"
   ln -fs ${HOME}/conf/vimrc.last ${HOME}/.vimrc.last
   echo "Please start vim to fetch plugins"
+
+  echo "Configuring NeoVim..."
+  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+  ln -fs ${HOME}/conf/init.vim ${HOME}/.config/nvim/init.vim
+  curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
   echo "Grab sum patched fonts"
   mkdir -p ${HOME}/.fonts/p
   wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf -O ${HOME}/.fonts/p/PowerLineSymbols.otf
