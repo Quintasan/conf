@@ -19,6 +19,9 @@ Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-expand-region'
 
+" Text snippets
+Plug 'SirVer/ultisnips'
+
 " General programming stuff
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/rainbow_parentheses.vim', { 'on': [] }
@@ -70,8 +73,8 @@ set ruler
 set number
 set relativenumber
 set cursorline
-set undodir=~/.nvim/undo
 set undofile
+set undodir=~/.nvim/undo
 set undolevels=500
 set undoreload=10000
 set nowrap
