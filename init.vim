@@ -7,7 +7,6 @@ Plug 'junegunn/seoul256.vim'
 " General text editing
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'sjl/gundo.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
@@ -51,12 +50,12 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+
+" Haskell
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 call plug#end()
 
 """"" Vim settings
-" Muh color theme
-" set background=dark
-" colorscheme jellybeans
 colo seoul256
 
 " General settings
@@ -68,7 +67,7 @@ set number
 set relativenumber
 set cursorline
 set undofile
-set undodir=~/.nvim/undo
+set undodir=~/.config/nvim/undo
 set undolevels=500
 set undoreload=10000
 set nowrap
