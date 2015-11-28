@@ -36,13 +36,8 @@ function deploy_configuration() {
   ln -fs ${HOME}/conf/init.vim ${HOME}/.config/nvim/init.vim
   curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  echo "Run nvim +PlugInstall +qall before starting NeoVim"
 
-  echo "Grab sum patched fonts"
-  mkdir -p ${HOME}/.fonts/p
-  wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf -O ${HOME}/.fonts/p/PowerLineSymbols.otf
-  mkdir -p ${HOME}/.config/fontconfig/conf.d/
-  wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf -O ${HOME}/.config/fontconfig/conf.d/10-powerline-symbols.conf
-  fc-cache -vf ${HOME}/.fonts
   echo "Symlinking ${HOME}/conf/gitconfig to ${HOME}/.gitconfig"
   ln -fs ${HOME}/conf/gitconfig ${HOME}/.gitconfig
   echo "Symlinking ${HOME}/conf/gitignore_global to ${HOME}/.gitignore_global"
