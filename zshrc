@@ -1,5 +1,7 @@
 export WORKON_HOME=$HOME/.virtualenvs
 
+export PATH=$HOME/bin:$PATH
+
 #RVM needs to be loaded before oh-my-zsh
 export PATH=$PATH:$HOME/.rvm/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

@@ -12,6 +12,7 @@
   master = checkout master
   lshow = diff-tree --no-commit-id --name-status -r
   co = checkout
+  cnv = commit --no-verify
 [color]
   branch = auto
   diff   = auto
