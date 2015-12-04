@@ -25,8 +25,8 @@ Plug 'junegunn/rainbow_parentheses.vim', { 'on': [] }
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
-Plug 'scrooloose/syntastiic', { 'on': 'SyntasticCheck' }
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'scrooloose/syntastic'
+Plug 'majutsushi/tagbar'
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -148,6 +148,8 @@ nnoremap <Leader>l :Goyo<CR>
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " CtrlP
 let g:ctrlp_by_filename = 1
@@ -196,8 +198,7 @@ inoremap <F4> <esc>:TagbarToggle<cr>
 nnoremap <F4> :TagbarToggle<cr>
 let g:tagbar_sort = 0
 
-"""" Shamelessly stolen from somewhere
-
+"""" Shamelessly stolen from https://github.com/junegunn/dotfiles/blob/master/vimrc
 "----------------------------------------------------------------------------
 " #!! | Shebang
 " ----------------------------------------------------------------------------
