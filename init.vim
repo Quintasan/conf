@@ -11,6 +11,10 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-expand-region'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesEnable' }
+autocmd! User indentLine doautocmd indentLine Syntax
+Plug 'ConradIrwin/vim-bracketed-paste'
 
 " Text snippets
 Plug 'SirVer/ultisnips'
@@ -21,7 +25,8 @@ Plug 'junegunn/rainbow_parentheses.vim', { 'on': [] }
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastiic', { 'on': 'SyntasticCheck' }
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -41,15 +46,11 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 
 " Ruby
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-"Plug 'stefanoverna/vim-i18n', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails', { 'for': [] }
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
-" Coffeescript
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
@@ -127,14 +128,26 @@ map Q <nop>
 
 nmap <silent> <leader>s :set spell!<CR>
 
+" Split navigation via Tab? Yes please.
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
+
 """"" Plugin specific settings
+
+" vim-fugitive
+nmap <Leader>g :Gstatus<CR>gg<c-n>
+noremap <Leader>d :Gdiff<CR>
 
 " Goyo
 let g:goyo_width = "60%"
 let g:goyo_height = "85%"
 autocmd User GoyoEnter Limelight
 autocmd User GoyoLeave Limelight!
-nnoremap <Leader>g :Goyo<CR>
+nnoremap <Leader>l :Goyo<CR>
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 
 " CtrlP
 let g:ctrlp_by_filename = 1
@@ -177,3 +190,15 @@ vmap <C-v> <Plug>(expand_region_shrink)
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='jellybeans'
 let g:bufferline_echo = 0
+
+" Tagbar
+inoremap <F4> <esc>:TagbarToggle<cr>
+nnoremap <F4> :TagbarToggle<cr>
+let g:tagbar_sort = 0
+
+"""" Shamelessly stolen from somewhere
+
+"----------------------------------------------------------------------------
+" #!! | Shebang
+" ----------------------------------------------------------------------------
+inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)

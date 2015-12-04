@@ -33,9 +33,9 @@ function deploy_configuration() {
 
   echo "Configuring NeoVim..."
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-  ln -fs ${HOME}/conf/init.vim ${HOME}/.config/nvim/init.vim
   curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  ln -fs ${HOME}/conf/init.vim ${HOME}/.config/nvim/init.vim
   echo "Run nvim +PlugInstall +qall before starting NeoVim"
 
   echo "Symlinking ${HOME}/conf/gitconfig to ${HOME}/.gitconfig"
