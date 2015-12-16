@@ -23,6 +23,8 @@
   insteadOf = debian:
 [url "quintasan-guest@git.debian.org:/git/pkg-kde/"]
   pushInsteadOf = debian:
+[url "gitolite3@git.edinburghlinux.co.uk:"]
+  insteadof = neon:
 [core]
   editor = vim
   excludesfile = /home/quintasan/.gitignore_global
