@@ -1,7 +1,8 @@
 call plug#begin('~/.config/nvim/plugins')
 
 Plug 'nanotech/jellybeans.vim'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/seoul256.vim'
 
 " General text editing
