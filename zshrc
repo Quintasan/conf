@@ -1,14 +1,5 @@
-export WORKON_HOME=$HOME/.virtualenvs
-
-export PATH=$HOME/bin:$PATH
-
-#RVM needs to be loaded before oh-my-zsh
-export PATH=$PATH:$HOME/.rvm/bin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Load NVM
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" ]
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Set up oh-my-zsh
 ZSH=$HOME/conf/oh-my-zsh
@@ -16,7 +7,7 @@ ZSH_THEME="bira"
 export UPDATE_ZSH_DAYS=14
 export DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(debian command-not-found cp rvm virtualenvwrapper colorize colored-man git-flow-avh vagrant)
+plugins=(cp colorize colored-man-pages vagrant pass rvm)
 
 source $ZSH/oh-my-zsh.sh
 
