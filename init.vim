@@ -199,8 +199,12 @@ inoremap <F4> <esc>:TagbarToggle<cr>
 nnoremap <F4> :TagbarToggle<cr>
 let g:tagbar_sort = 0
 
-"""" Shamelessly stolen from https://github.com/junegunn/dotfiles/blob/master/vimrc
-"----------------------------------------------------------------------------
-" #!! | Shebang
-" ----------------------------------------------------------------------------
-inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
+" Create parent directories if they don't exist
+" http://vi.stackexchange.com/questions/678/how-do-i-save-a-file-in-a-directory-that-does-not-yet-exist
+augroup Mkdir
+  autocmd!
+  autocmd BufWritePre *
+    \ if !isdirectory(expand("<afile>:p:h")) |
+        \ call mkdir(expand("<afile>:p:h"), "p") |
+    \ endif
+augroup END
