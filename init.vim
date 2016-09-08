@@ -1,3 +1,7 @@
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 call plug#begin('~/.config/nvim/plugins')
 
 Plug 'nanotech/jellybeans.vim'
@@ -16,6 +20,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesEnable' }
 autocmd! User indentLine doautocmd indentLine Syntax
 Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'tpope/vim-surround'
+
+" Autocompletion
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 " Text snippets
 Plug 'SirVer/ultisnips'
@@ -40,21 +48,35 @@ Plug 'airblade/vim-gitgutter'
 " Slim
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 
+" CoffeeScript
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+
 " HAML
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 
 " Markdown
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails', { 'for': [] }
+Plug 'tpope/vim-rails'
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+
+" Pandoc
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc-after'
+
+" Elixir
+Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+
 call plug#end()
 
 """"" Vim settings
@@ -177,8 +199,8 @@ let NERDTreeWinPos = "left"
 map <F2> :NERDTreeToggle<CR>
 
 " Gundo
-let g:gundo_right = 1
-map <F3> :GundoToggle<CR>
+let g:mundo_right = 1
+map <F3> :MundoToggle<CR>
 
 " rainbow_parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
@@ -191,7 +213,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='jellybeans'
+let g:airline_theme='bubblegum'
 let g:bufferline_echo = 0
 
 " Tagbar
@@ -208,3 +230,15 @@ augroup Mkdir
         \ call mkdir(expand("<afile>:p:h"), "p") |
     \ endif
 augroup END
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" vim-pandoc
+let g:pandoc#after#modules#enabled = ["ultisnips"]
+
+"""" Shamelessly stolen from https://github.com/junegunn/dotfiles/blob/master/vimrc
+"----------------------------------------------------------------------------
+" #!! | Shebang
+" ----------------------------------------------------------------------------
+inoreabbrev <expr> "#!!" "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
