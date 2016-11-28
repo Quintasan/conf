@@ -7,6 +7,8 @@ call plug#begin('~/.config/nvim/plugins')
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'lifepillar/vim-solarized8'
+Plug 'arakashic/nvim-colors-solarized'
 Plug 'junegunn/seoul256.vim'
 
 " General text editing
@@ -80,7 +82,8 @@ Plug 'slashmili/alchemist.vim'
 call plug#end()
 
 """"" Vim settings
-colo seoul256
+set termguicolors
+colorscheme solarized8_dark
 
 " General settings
 set showcmd
@@ -102,6 +105,7 @@ set autoread
 set confirm
 set laststatus=2
 set mouse=
+set expandtab
 
 " File ignoring
 set wildignore=*.a,*.o,*.so,*.pyc,*.jpg,
