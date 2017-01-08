@@ -78,6 +78,15 @@ Plug 'vim-pandoc/vim-pandoc-after'
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
+let g:alchemist_tag_disable = 1
+Plug 'powerman/vim-plugin-AnsiEsc'
+
+" Phoenix
+Plug 'c-brenn/phoenix.vim'
+Plug 'tpope/vim-projectionist'
+
+" Testing shit
+Plug 'neomake/neomake'
 
 call plug#end()
 
@@ -240,6 +249,10 @@ let g:deoplete#enable_at_startup = 1
 
 " vim-pandoc
 let g:pandoc#after#modules#enabled = ["ultisnips"]
+
+autocmd! BufWritePost * Neomake
+autocmd! BufReadPost * Neomake
+let g:neomake_elixir_enabled_makers = ['mix', 'credo']
 
 """" Shamelessly stolen from https://github.com/junegunn/dotfiles/blob/master/vimrc
 "----------------------------------------------------------------------------

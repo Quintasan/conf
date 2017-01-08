@@ -14,6 +14,7 @@ export EDITOR=vim
 COMPLETION_WAITING_DOTS="true"
 plugins=(cp colorize colored-man-pages pass rvm tmuxinator)
 
+alias mux="tmuxinator"
 alias demonbane="ssh -p 6666 `curl -s https://abramowicz.org/currentip.html `"
 alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=playground -e POSTGRES_PASSWORD=playground -d postgres:9.6-alpine"
 
