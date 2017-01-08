@@ -26,16 +26,16 @@ function deploy_configuration() {
   echo "Symlinking ${HOME}/conf/tmux.conf to ${HOME}/.tmux.conf"
   ln -fs ${HOME}/conf/tmux.conf ${HOME}/.tmux.conf
 
-  echo "Symlinking ${HOME}/conf/vimconf/.vimrc to ${HOME}/.vimrc"
-  ln -fs ${HOME}/conf/vimconf/.vimrc ${HOME}/.vimrc
-  echo "Symlinking ${HOME}/conf/vimrc.plugins to ${HOME}/.vimrc.plugins"
-  ln -fs ${HOME}/conf/vimrc.plugins ${HOME}/.vimrc.plugins
-  echo "Symlinking ${HOME}/conf/vimrc.last to ${HOME}/.vimrc.last"
-  ln -fs ${HOME}/conf/vimrc.last ${HOME}/.vimrc.last
-  echo "Please start vim to fetch plugins"
+#  echo "Symlinking ${HOME}/conf/vimconf/.vimrc to ${HOME}/.vimrc"
+#  ln -fs ${HOME}/conf/vimconf/.vimrc ${HOME}/.vimrc
+#  echo "Symlinking ${HOME}/conf/vimrc.plugins to ${HOME}/.vimrc.plugins"
+##  ln -fs ${HOME}/conf/vimrc.plugins ${HOME}/.vimrc.plugins
+#  echo "Symlinking ${HOME}/conf/vimrc.last to ${HOME}/.vimrc.last"
+#  ln -fs ${HOME}/conf/vimrc.last ${HOME}/.vimrc.last
+#  echo "Please start vim to fetch plugins"
 
   echo "Configuring NeoVim..."
-  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+  mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config/nvim}
   curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   ln -fs ${HOME}/conf/init.vim ${HOME}/.config/nvim/init.vim
