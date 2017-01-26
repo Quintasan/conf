@@ -1,7 +1,3 @@
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
 call plug#begin('~/.config/nvim/plugins')
 
 Plug 'nanotech/jellybeans.vim'
@@ -25,7 +21,8 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-surround'
 
 " Autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 " Text snippets
 Plug 'SirVer/ultisnips'
@@ -36,7 +33,6 @@ Plug 'junegunn/rainbow_parentheses.vim', { 'on': [] }
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
-Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 
 " Distraction-free writing
@@ -69,6 +65,9 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -121,7 +120,7 @@ set wildignore=*.a,*.o,*.so,*.pyc,*.jpg,
         \*.jpeg,*.png,*.gif,*.pdf,*.git,
         \*.swp,*.swo
 set wildmenu
-set wildmode=longest,list
+set wildmode=list:longest,full
 
 " Spellchecking!
 set complete+=kspell
@@ -164,11 +163,16 @@ map Q <nop>
 
 nmap <silent> <leader>s :set spell!<CR>
 
-" Split navigation via Tab? Yes please.
-nnoremap <tab>   <c-w>w
-nnoremap <S-tab> <c-w>W
-
 """"" Plugin specific settings
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" Neomake
+autocmd! BufRead,BufWritePost * Neomake
+let g:neomake_elixir_enabled_makers = ['mix', 'credo']
 
 " vim-fugitive
 nmap <Leader>g :Gstatus<CR>gg<c-n>
@@ -180,12 +184,6 @@ let g:goyo_height = "85%"
 autocmd User GoyoEnter Limelight
 autocmd User GoyoLeave Limelight!
 nnoremap <Leader>l :Goyo<CR>
-
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " CtrlP
 let g:ctrlp_by_filename = 1
@@ -244,18 +242,23 @@ augroup Mkdir
     \ endif
 augroup END
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
 " vim-pandoc
 let g:pandoc#after#modules#enabled = ["ultisnips"]
 
-autocmd! BufWritePost * Neomake
-autocmd! BufReadPost * Neomake
-let g:neomake_elixir_enabled_makers = ['mix', 'credo']
+" haskell-vim
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1               " to enable highlighting of backpack keywords
 
-"""" Shamelessly stolen from https://github.com/junegunn/dotfiles/blob/master/vimrc
-"----------------------------------------------------------------------------
-" #!! | Shebang
-" ----------------------------------------------------------------------------
-inoreabbrev <expr> "#!!" "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
+let g:haskell_indent_if = 2
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 2
+let g:haskell_indent_where = 2
+let g:haskell_indent_do = 2
+let g:haskell_indent_in = 2
+let g:haskell_indent_guard = 2
+let g:haskellmode_completion_ghc = 1
