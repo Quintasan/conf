@@ -1,11 +1,8 @@
 call plug#begin('~/.config/nvim/plugins')
 
-Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'lifepillar/vim-solarized8'
-Plug 'arakashic/nvim-colors-solarized'
-Plug 'junegunn/seoul256.vim'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 " General text editing
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -13,10 +10,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-expand-region'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesEnable' }
-autocmd! User indentLine doautocmd indentLine Syntax
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-surround'
 
@@ -29,11 +23,8 @@ Plug 'SirVer/ultisnips'
 
 " General programming stuff
 Plug 'kien/ctrlp.vim'
-Plug 'junegunn/rainbow_parentheses.vim', { 'on': [] }
-Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
-Plug 'majutsushi/tagbar'
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -44,30 +35,24 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Slim
-Plug 'slim-template/vim-slim', { 'for': 'slim' }
-
-" CoffeeScript
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'slim-template/vim-slim'
 
 " HAML
-Plug 'tpope/vim-haml', { 'for': 'haml' }
-
-" Markdown
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'JamshedVesuna/vim-markdown-preview', { 'for': 'markdown' }
+Plug 'tpope/vim-haml'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+Plug 'fishbullet/deoplete-ruby'
 
 " Rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim'
 
 " Haskell
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-Plug 'eagletmt/ghcmod-vim'
+Plug 'vim-scripts/haskell.vim'
+Plug 'itchyny/vim-haskell-indent'
 Plug 'eagletmt/neco-ghc'
-
+Plug 'eagletmt/ghcmod-vim'
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -75,23 +60,20 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
 " Elixir
+Plug 'awetzel/elixir.nvim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-let g:alchemist_tag_disable = 1
-Plug 'powerman/vim-plugin-AnsiEsc'
-
-" Phoenix
-Plug 'c-brenn/phoenix.vim'
-Plug 'tpope/vim-projectionist'
 
 " Testing shit
 Plug 'neomake/neomake'
+Plug 'Shougo/neopairs.vim'
 
 call plug#end()
 
 """"" Vim settings
 set termguicolors
-colorscheme solarized8_dark
+set background=dark
+colorscheme solarized
 
 " General settings
 set showcmd
@@ -107,10 +89,10 @@ set undolevels=500
 set undoreload=10000
 set nowrap
 set noshowmode
-set noautowrite
+set autowrite
 set nobackup
 set autoread
-set confirm
+set noconfirm
 set laststatus=2
 set mouse=
 set expandtab
@@ -121,9 +103,6 @@ set wildignore=*.a,*.o,*.so,*.pyc,*.jpg,
         \*.swp,*.swo
 set wildmenu
 set wildmode=list:longest,full
-
-" Spellchecking!
-set complete+=kspell
 
 " More natural splits
 set splitbelow
@@ -167,7 +146,8 @@ nmap <silent> <leader>s :set spell!<CR>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-
+let g:deoplete#enable_smart_case = 1
+let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Neomake
@@ -213,24 +193,11 @@ map <F2> :NERDTreeToggle<CR>
 let g:mundo_right = 1
 map <F3> :MundoToggle<CR>
 
-" rainbow_parentheses
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-call plug#load('rainbow_parentheses.vim')
-call rainbow_parentheses#activate()
-
-" vim-expand-region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='bubblegum'
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts = 1
 let g:bufferline_echo = 0
-
-" Tagbar
-inoremap <F4> <esc>:TagbarToggle<cr>
-nnoremap <F4> :TagbarToggle<cr>
-let g:tagbar_sort = 0
 
 " Create parent directories if they don't exist
 " http://vi.stackexchange.com/questions/678/how-do-i-save-a-file-in-a-directory-that-does-not-yet-exist
@@ -243,7 +210,7 @@ augroup Mkdir
 augroup END
 
 " vim-pandoc
-let g:pandoc#after#modules#enabled = ["ultisnips"]
+let g:pandoc#after#modules#enabled = ["ultisnips", "supertab"]
 
 " haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -253,12 +220,3 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1               " to enable highlighting of backpack keywords
-
-let g:haskell_indent_if = 2
-let g:haskell_indent_case = 2
-let g:haskell_indent_let = 2
-let g:haskell_indent_where = 2
-let g:haskell_indent_do = 2
-let g:haskell_indent_in = 2
-let g:haskell_indent_guard = 2
-let g:haskellmode_completion_ghc = 1
