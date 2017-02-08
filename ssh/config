@@ -14,8 +14,7 @@ Host tramwaj
   Hostname = tramwaj.asi.wroclaw.pl
 
 Host demonbane
-  Hostname = 10.0.0.2
-  proxycommand = ssh shurelia nc %h %p
+  Hostname = squot.hopto.org
 
 Host git.debian.org
   User = quintasan-guest

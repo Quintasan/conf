@@ -34,6 +34,10 @@ function deploy_configuration() {
 #  ln -fs ${HOME}/conf/vimrc.last ${HOME}/.vimrc.last
 #  echo "Please start vim to fetch plugins"
 
+  echo "Setting up tmux"
+  mkdir -p ${HOME}/.tmux/plugins/
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
   echo "Configuring NeoVim..."
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config/nvim}
   curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
