@@ -18,10 +18,3 @@ Host demonbane
 
 Host git.debian.org
   User = quintasan-guest
-
-Host *.iptv.k.pl
-  Port = 2222
-
-Host halite
-  User = 203229
-  Hostname = 156.17.130.39

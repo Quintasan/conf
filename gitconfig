@@ -4,6 +4,7 @@
   signingkey = 79313F09
 [push]
   default = simple
+  followTags = true
 [pull]
   rebase = preserve
 [alias]
@@ -13,6 +14,8 @@
   lshow = diff-tree --no-commit-id --name-status -r
   co = checkout
   cnv = commit --no-verify
+  prune = fetch --prune
+  stash-all = stash save --include-untracked
 [color]
   branch = auto
   diff   = auto
@@ -28,3 +31,10 @@
 [core]
   editor = vim
   excludesfile = /home/quintasan/.gitignore_global
+[merge]
+  ff = only
+  conflictstyle = diff3
+[status]
+  showUntrackedFiles = all
+[transfer]
+  fsckobjects = true
