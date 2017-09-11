@@ -60,8 +60,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
 " Elixir
-Plug 'awetzel/elixir.nvim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'thinca/vim-ref'
+"Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'slashmili/alchemist.vim'
 
 " Testing shit

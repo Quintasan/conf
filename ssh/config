@@ -1,3 +1,6 @@
+Host 192.168.100.10
+  ForwardAgent yes
+
 Host *
   ControlMaster auto
   ControlPath ~/.ssh/multiplex/%r@%h:%p

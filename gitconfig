@@ -38,3 +38,4 @@
   showUntrackedFiles = all
 [transfer]
   fsckobjects = true
+  quotepath = false

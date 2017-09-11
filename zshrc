@@ -12,10 +12,11 @@ export DISABLE_CORRECTION="true"
 export ANDROID_HVPROTO=ddm
 export EDITOR=vim
 COMPLETION_WAITING_DOTS="true"
-plugins=(cp colorize colored-man-pages pass rvm tmuxinator)
+plugins=(cp colorize colored-man-pages pass rvm tmuxinator mix lxc)
 
 alias mux="tmuxinator"
 alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=playground -e POSTGRES_PASSWORD=playground -d postgres:9.6-alpine"
+alias stylepolice="bundle exec rubocop --auto-correct ."
 
 source $ZSH/oh-my-zsh.sh
 
