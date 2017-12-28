@@ -1,6 +1,6 @@
 [user]
-  name = Michał Zając
-  email = michal.zajac@gmail.com
+	name = Michał Zając
+	email = michal.zajac@gmail.com
   signingkey = 79313F09
 [push]
   default = simple
@@ -29,13 +29,10 @@
 [url "gitolite3@git.edinburghlinux.co.uk:"]
   insteadof = neon:
 [core]
-  editor = vim
+	editor = vim
   excludesfile = /home/quintasan/.gitignore_global
 [merge]
-  ff = only
+  ;ff = only
   conflictstyle = diff3
 [status]
   showUntrackedFiles = all
-[transfer]
-  fsckobjects = true
-  quotepath = false

@@ -13,6 +13,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-surround'
+Plug 'qpkorr/vim-bufkill'
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -22,9 +23,13 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'SirVer/ultisnips'
 
 " General programming stuff
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
+Plug 'w0rp/ale'
+Plug 'sheerun/vim-polyglot', { 'do': './build' }
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -34,23 +39,10 @@ Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Slim
-Plug 'slim-template/vim-slim'
-
-" HAML
-Plug 'tpope/vim-haml'
-
 " Ruby
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
 Plug 'fishbullet/deoplete-ruby'
 
-" Rust
-Plug 'rust-lang/rust.vim'
-
 " Haskell
-Plug 'vim-scripts/haskell.vim'
-Plug 'itchyny/vim-haskell-indent'
 Plug 'eagletmt/neco-ghc'
 Plug 'eagletmt/ghcmod-vim'
 
@@ -58,16 +50,6 @@ Plug 'eagletmt/ghcmod-vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
-
-" Elixir
-Plug 'elixir-lang/vim-elixir'
-Plug 'thinca/vim-ref'
-"Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-Plug 'slashmili/alchemist.vim'
-
-" Testing shit
-Plug 'neomake/neomake'
-Plug 'Shougo/neopairs.vim'
 
 call plug#end()
 
@@ -151,10 +133,6 @@ let g:deoplete#enable_smart_case = 1
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-" Neomake
-autocmd! BufRead,BufWritePost * Neomake
-let g:neomake_elixir_enabled_makers = ['mix', 'credo']
-
 " vim-fugitive
 nmap <Leader>g :Gstatus<CR>gg<c-n>
 noremap <Leader>d :Gdiff<CR>
@@ -166,24 +144,15 @@ autocmd User GoyoEnter Limelight
 autocmd User GoyoLeave Limelight!
 nnoremap <Leader>l :Goyo<CR>
 
-" CtrlP
-let g:ctrlp_by_filename = 1
-let g:ctrlp_cache_dir = $HOME.'/.nvim/ctrlp_cache'
-let g:ctrlp_map = "<Leader>o"
-nnoremap <Leader>o :CtrlPMixed<CR>
-if executable("/usr/bin/ag")
-  set grepprg="/usr/bin/ag --nogroup --nocolor"
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_clear_cache_on_exit = 1
-  let g:ctrlp_user_command = '/usr/bin/ag %s -i --nocolor --nogroup --hidden
-        \ --ignore .git
-        \ --ignore .svn
-        \ --ignore .hg
-        \ --ignore .DS_Store
-        \ --ignore "**/*.pyc"
-        \ -g ""'
-else
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+"fzf
+nmap ; :Buffers<CR>
+nmap <Leader>o :Files<CR>
+nmap <Leader>t :Tags<CR>
+nmap <Leader>a :Ag<CR>
+
+"ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
 endif
 
 " NERDTree
@@ -196,6 +165,7 @@ map <F3> :MundoToggle<CR>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:bufferline_echo = 0
@@ -213,11 +183,5 @@ augroup END
 " vim-pandoc
 let g:pandoc#after#modules#enabled = ["ultisnips", "supertab"]
 
-" haskell-vim
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1               " to enable highlighting of backpack keywords
+"bufkill.vim
+map <C-d> :BD<CR>
