@@ -29,7 +29,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
 Plug 'w0rp/ale'
-Plug 'sheerun/vim-polyglot', { 'do': './build' }
+Plug 'sheerun/vim-polyglot'
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
