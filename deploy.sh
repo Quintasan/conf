@@ -16,6 +16,9 @@ function deploy_configuration() {
   git clone https://github.com/Quintasan/conf.git ${HOME}/conf
   cd ${HOME}/conf
 
+  echo "Setting origin to use SSH key"
+  git remote set-url origin git@github.com:Quintasan/conf.git
+
   echo "Fetching submodules"
   git submodule init
   git submodule update
