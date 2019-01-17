@@ -10,8 +10,6 @@ export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 if [ -e "$HOME/.rbenv" ]; then
   _append_to_path $HOME/.rbenv/bin
 fi
-[[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
-[[ -s "$HOME/.asdf/completions/asdf.bash" ]] && . $HOME/.asdf/completions/asdf.bash
 if [ -e ~/.fzf ]; then
   _append_to_path ~/.fzf/bin
   source ~/.fzf/shell/key-bindings.zsh
@@ -37,11 +35,9 @@ export DISABLE_CORRECTION="true"
 export ANDROID_HVPROTO=ddm
 export EDITOR=vim
 COMPLETION_WAITING_DOTS="true"
-plugins=(cp colorize colored-man-pages pass rvm tmuxinator)
-
+plugins=(cp colorize colored-man-pages pass asdf bundler docker httpie tmuxinator)
 alias mux="tmuxinator"
 alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=playground -e POSTGRES_PASSWORD=playground -d postgres:9.6-alpine"
-alias stylepolice="bundle exec rubocop --auto-correct ."
 
 source $ZSH/oh-my-zsh.sh
 
