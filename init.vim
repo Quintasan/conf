@@ -14,6 +14,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-surround'
 Plug 'qpkorr/vim-bufkill'
+" Restore FocusGained, FocusLost events in tmux
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -45,6 +47,8 @@ Plug 'fishbullet/deoplete-ruby'
 " Haskell
 Plug 'eagletmt/neco-ghc'
 Plug 'eagletmt/ghcmod-vim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'parsonsmatt/intero-neovim'
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -79,6 +83,11 @@ set noconfirm
 set laststatus=2
 set mouse=
 set expandtab
+
+" Automatically refresh file contents
+set autoread
+au CursorHold,CursorHoldI * checktime
+au FocusGained,BufEnter * :checktime
 
 " File ignoring
 set wildignore=*.a,*.o,*.so,*.pyc,*.jpg,
@@ -132,6 +141,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+let g:necoghc_enable_detailed_browse = 1
 
 " vim-fugitive
 nmap <Leader>g :Gstatus<CR>gg<c-n>
@@ -185,3 +195,17 @@ let g:pandoc#after#modules#enabled = ["ultisnips", "supertab"]
 
 "bufkill.vim
 map <C-d> :BD<CR>
+
+"haskell-vim
+let g:haskell_classic_highlighting = 1
+let g:haskell_indent_if = 3
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 6
+let g:haskell_indent_before_where = 2
+let g:haskell_indent_after_bare_where = 2
+let g:haskell_indent_do = 3
+let g:haskell_indent_in = 1
+let g:haskell_indent_guard = 2
+let g:haskell_indent_case_alternative = 1
+let g:cabal_indent_section = 2

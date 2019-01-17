@@ -7,14 +7,18 @@ _append_to_path() {
   fi
 }
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [ -e "$HOME/.rbenv" ]; then
+  _append_to_path $HOME/.rbenv/bin
+fi
 [[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
 [[ -s "$HOME/.asdf/completions/asdf.bash" ]] && . $HOME/.asdf/completions/asdf.bash
 if [ -e ~/.fzf ]; then
   _append_to_path ~/.fzf/bin
   source ~/.fzf/shell/key-bindings.zsh
   source ~/.fzf/shell/completion.zsh
+fi
+if [ -e /usr/lib/go-1.8/bin/ ]; then
+  _append_to_path /usr/lib/go-1.8/bin/
 fi
 if _has fzf && _has ag; then
   export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
@@ -33,7 +37,7 @@ export DISABLE_CORRECTION="true"
 export ANDROID_HVPROTO=ddm
 export EDITOR=vim
 COMPLETION_WAITING_DOTS="true"
-plugins=(cp colorize colored-man-pages pass rvm tmuxinator mix lxc)
+plugins=(cp colorize colored-man-pages pass rvm tmuxinator)
 
 alias mux="tmuxinator"
 alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=playground -e POSTGRES_PASSWORD=playground -d postgres:9.6-alpine"
@@ -50,3 +54,4 @@ autoload mkcd
 cd .
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(rbenv init -)"
