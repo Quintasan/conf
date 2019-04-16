@@ -41,6 +41,8 @@ alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=pl
 
 source $ZSH/oh-my-zsh.sh
 
+alias dcr="docker-compose run --rm"
+
 # Custom stuff
 function mkcd() {
   mkdir $1 && cd $1
