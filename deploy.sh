@@ -13,15 +13,11 @@ function deploy_configuration() {
   echo "Checking whether Git is installed."
   command_exists git
   echo "Fetching the configuration files from GitHub"
-  git clone https://github.com/Quintasan/conf.git ${HOME}/conf
+  git clone --recursive https://github.com/Quintasan/conf.git ${HOME}/conf
   cd ${HOME}/conf
 
   echo "Setting origin to use SSH key"
   git remote set-url origin git@github.com:Quintasan/conf.git
-
-  echo "Fetching submodules"
-  git submodule init
-  git submodule update
 
   echo "Symlinking ${HOME}/conf/zshrc to ${HOME}/.zshrc"
   ln -fs ${HOME}/conf/zshrc ${HOME}/.zshrc
