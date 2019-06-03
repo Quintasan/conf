@@ -1,0 +1,5 @@
+gem-ctags
+bundler
+pry
+pry-byebug
+awesome_print
