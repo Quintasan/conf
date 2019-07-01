@@ -40,8 +40,12 @@ Plug 'junegunn/limelight.vim'
 " Git
 Plug 'tpope/vim-fugitive'
 
-
 " Ruby
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'ngmy/vim-rubocop'
 Plug 'fishbullet/deoplete-ruby'
 
 " Haskell
@@ -90,6 +94,7 @@ set laststatus=2
 set mouse=
 set expandtab
 set hidden
+set tags=./tags
 
 " Automatically refresh file contents
 set autoread
@@ -148,8 +153,9 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 
 " vim-fugitive
-nmap <Leader>g :Gstatus<CR>gg<c-n>
-noremap <Leader>d :Gdiff<CR>
+nmap <Leader>gs :Gstatus<CR>gg<c-n>
+noremap <Leader>gd :Gdiff<CR>
+nmap <Leader>gc :Gcommit %<CR>
 
 " Goyo
 let g:goyo_width = "60%"
@@ -230,3 +236,10 @@ map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
 map <Leader>lb :call LanguageClient#textDocument_references()<CR>
 map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
+" vim-rubocop
+let g:vimrubocop_keymap = 0
+nmap <Leader>ra :RuboCop -a<CR>
+
+" Do not expand tabs into spaces when editing Makefile
+autocmd FileType make set noexpandtab

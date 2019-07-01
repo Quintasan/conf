@@ -42,6 +42,7 @@ alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=pl
 source $ZSH/oh-my-zsh.sh
 
 alias dcr="docker-compose run --rm"
+alias clipboard="xclip -selection clipboard"
 
 # Custom stuff
 function mkcd() {
