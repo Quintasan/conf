@@ -242,4 +242,4 @@ let g:vimrubocop_keymap = 0
 nmap <Leader>ra :RuboCop -a<CR>
 
 " Do not expand tabs into spaces when editing Makefile
-autocmd FileType make set noexpandtab
+autocmd FileType make setlocal noexpandtab

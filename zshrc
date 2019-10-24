@@ -10,6 +10,19 @@ export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 if [ -e "$HOME/.rbenv" ]; then
   _append_to_path $HOME/.rbenv/bin
 fi
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
+[[ -s "$HOME/.asdf/completions/asdf.bash" ]] && . $HOME/.asdf/completions/asdf.bash
+[[ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . $HOME/.nix-profile/etc/profile.d/nix.sh
+if [ -e /media/dump/quintasan/bin/android-sdk/platform-tools/ ]; then
+  _append_to_path /media/dump/quintasan/bin/android-sdk/platform-tools/
+fi
+if [ -e /snap/bin ]; then
+  _append_to_path /snap/bin
+fi
+if [ -e $HOME/.cargo/bin ]; then
+  _append_to_path $HOME/.cargo/bin
+fi
 if [ -e ~/.fzf ]; then
   _append_to_path ~/.fzf/bin
   source ~/.fzf/shell/key-bindings.zsh
@@ -45,6 +58,9 @@ alias dcr="docker-compose run --rm"
 alias clipboard="xclip -selection clipboard"
 
 # Custom stuff
+
+alias dcr="docker-compose run --rm"
+
 function mkcd() {
   mkdir $1 && cd $1
 }
@@ -53,4 +69,5 @@ autoload mkcd
 cd .
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fpath=(~/.zsh/completion $fpath)
 eval "$(rbenv init -)"
