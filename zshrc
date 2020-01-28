@@ -42,15 +42,50 @@ if _has fzf && _has ag; then
 fi
 # Set up oh-my-zsh
 ZSH=$HOME/conf/oh-my-zsh
-ZSH_THEME="bira"
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  #hg            # Mercurial section (hg_branch  + hg_status)
+  #package       # Package version
+  node          # Node.js section
+  ruby          # Ruby section
+  elixir        # Elixir section
+  #xcode         # Xcode section
+  swift         # Swift section
+  golang        # Go section
+  #php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  #julia         # Julia section
+  #docker        # Docker section
+  #aws           # Amazon Web Services section
+  venv          # virtualenv section
+  #conda         # conda virtualenv section
+  #pyenv         # Pyenv section
+  #dotnet        # .NET section
+  #ember         # Ember.js section
+  #kubecontext   # Kubectl context section
+  #terraform     # Terraform workspace section
+  #exec_time     # Execution time
+  #line_sep      # Line break
+  battery       # Battery level and status
+  #vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+  )
+ZSH_THEME="spaceship"
 export UPDATE_ZSH_DAYS=14
 export DISABLE_CORRECTION="true"
 export ANDROID_HVPROTO=ddm
 export EDITOR=vim
 COMPLETION_WAITING_DOTS="true"
-plugins=(cp colorize colored-man-pages pass asdf bundler docker httpie tmuxinator)
+plugins=(cp colorize colored-man-pages pass asdf bundler docker httpie tmuxinator zsh-syntax-highlighting zsh-autosuggestions)
 alias mux="tmuxinator"
-alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=playground -e POSTGRES_PASSWORD=playground -d postgres:9.6-alpine"
+alias database="docker run -d --name playground -p 5432:5432 -e POSTGRES_USER=playground -e POSTGRES_PASSWORD=playground -d postgres:12-alpine"
 
 source $ZSH/oh-my-zsh.sh
 

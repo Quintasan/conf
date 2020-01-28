@@ -51,10 +51,6 @@ Plug 'fishbullet/deoplete-ruby'
 " Haskell
 Plug 'neovimhaskell/haskell-vim'
 Plug 'parsonsmatt/intero-neovim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -206,6 +202,13 @@ let g:pandoc#after#modules#enabled = ["ultisnips", "supertab"]
 "bufkill.vim
 map <C-d> :BD<CR>
 
+" vim-rubocop
+let g:vimrubocop_keymap = 0
+nmap <Leader>ra :RuboCop -a<CR>
+
+" Do not expand tabs into spaces when editing Makefile
+autocmd FileType make setlocal noexpandtab
+
 "haskell-vim
 let g:haskell_classic_highlighting = 1
 let g:haskell_indent_if = 3
@@ -220,26 +223,5 @@ let g:haskell_indent_guard = 2
 let g:haskell_indent_case_alternative = 1
 let g:cabal_indent_section = 2
 
-" LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-      \ 'haskell': ['/home/quintasan/.local/bin/hie-wrapper']
-      \ }
-hi link ALEError Error
-hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
-hi link ALEWarning Warning
-hi link ALEInfo SpellCap
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-
-" vim-rubocop
-let g:vimrubocop_keymap = 0
-nmap <Leader>ra :RuboCop -a<CR>
-
-" Do not expand tabs into spaces when editing Makefile
-autocmd FileType make setlocal noexpandtab
+let g:intero_start_immediately = 0
+let g:intero_use_neomake = 0
