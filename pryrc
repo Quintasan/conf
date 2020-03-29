@@ -2,7 +2,6 @@ begin
   require "awesome_print"
   AwesomePrint.pry!
 rescue LoadError
-  puts "Install awesome_print first!"
 end
 
 # Editor

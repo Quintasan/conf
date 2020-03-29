@@ -45,3 +45,7 @@ Thumbs.db
 **/*~
 **/*.bak
 **/*.sw[abcdefghijklmnop]
+
+# asdf #
+########
+.tool-versions

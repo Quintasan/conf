@@ -12,7 +12,6 @@ if [ -e "$HOME/.rbenv" ]; then
 fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
-[[ -s "$HOME/.asdf/completions/asdf.bash" ]] && . $HOME/.asdf/completions/asdf.bash
 [[ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ]] && . $HOME/.nix-profile/etc/profile.d/nix.sh
 if [ -e /media/dump/quintasan/bin/android-sdk/platform-tools/ ]; then
   _append_to_path /media/dump/quintasan/bin/android-sdk/platform-tools/

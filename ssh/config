@@ -19,5 +19,8 @@ Host tramwaj
 Host demonbane
   Hostname = squot.hopto.org
 
+Host browar
+  Hostname = sycone-browar.pl
+
 Host git.debian.org
   User = quintasan-guest

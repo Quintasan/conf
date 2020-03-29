@@ -61,6 +61,9 @@ Plug 'vim-pandoc/vim-pandoc-after'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 """"" Vim settings
@@ -225,3 +228,13 @@ let g:cabal_indent_section = 2
 
 let g:intero_start_immediately = 0
 let g:intero_use_neomake = 0
+
+" vim-rubocop
+let g:vimrubocop_keymap = 0
+nmap <Leader>ra :RuboCop -a<CR>
+
+" Do not expand tabs into spaces when editing Makefile
+autocmd FileType make setlocal noexpandtab
+
+" rust.vim
+let g:rustfmt_autosave = 1
