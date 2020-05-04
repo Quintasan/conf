@@ -32,6 +32,10 @@ Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -63,6 +67,10 @@ Plug 'slashmili/alchemist.vim'
 
 " Rust
 Plug 'rust-lang/rust.vim'
+
+" TypeScript
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 call plug#end()
 
@@ -238,3 +246,10 @@ autocmd FileType make setlocal noexpandtab
 
 " rust.vim
 let g:rustfmt_autosave = 1
+
+" autozimu/LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>

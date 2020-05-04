@@ -21,9 +21,12 @@ function deploy_configuration() {
 
   echo "Symlinking ${HOME}/conf/zshrc to ${HOME}/.zshrc"
   ln -fs ${HOME}/conf/zshrc ${HOME}/.zshrc
-  mkdir -p ${HOME}/conf/oh-my-zsh/custom
+  mkdir -p ${HOME}/conf/oh-my-zsh/custom/plugins
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  mkdir -p ${HOME}/conf/oh-my-zsh/custom/themes
+  git clone https://github.com/denysdovhan/spaceship-prompt.git ${HOME}/conf/oh-my-zsh/custom/themes/spaceship-prompt
+  ln -fs ${HOME}/conf/oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme ${HOME}/conf/oh-my-zsh/custom/themes/spaceship.zsh-theme
 
   echo "Symlinking ${HOME}/conf/tmux.conf to ${HOME}/.tmux.conf"
   ln -fs ${HOME}/conf/tmux.conf ${HOME}/.tmux.conf
