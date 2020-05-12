@@ -37,7 +37,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -56,7 +56,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
-Plug 'ngmy/vim-rubocop'
 Plug 'fishbullet/deoplete-ruby'
 
 " Haskell
@@ -246,12 +245,14 @@ let g:pandoc#after#modules#enabled = ["ultisnips", "supertab"]
 "bufkill.vim
 map <C-d> :BD<CR>
 
-" vim-rubocop
-let g:vimrubocop_keymap = 0
-nmap <Leader>ra :RuboCop -a<CR>
-
 " Do not expand tabs into spaces when editing Makefile
 autocmd FileType make setlocal noexpandtab
+
+"ALE
+let g:ale_fixers = {
+      \    'ruby': ['rubocop'],
+      \}
+let g:ale_fix_on_save = 1
 
 "haskell-vim
 let g:haskell_classic_highlighting = 1
@@ -269,10 +270,6 @@ let g:cabal_indent_section = 2
 
 let g:intero_start_immediately = 0
 let g:intero_use_neomake = 0
-
-" vim-rubocop
-let g:vimrubocop_keymap = 0
-nmap <Leader>ra :RuboCop -a<CR>
 
 " Do not expand tabs into spaces when editing Makefile
 autocmd FileType make setlocal noexpandtab
