@@ -163,7 +163,9 @@ nmap <silent> <leader>s :set spell!<CR>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
+call deoplete#custom#option({
+\ 'smart_case': v:true,
+\ })
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
@@ -270,9 +272,6 @@ let g:cabal_indent_section = 2
 
 let g:intero_start_immediately = 0
 let g:intero_use_neomake = 0
-
-" Do not expand tabs into spaces when editing Makefile
-autocmd FileType make setlocal noexpandtab
 
 " rust.vim
 let g:rustfmt_autosave = 1
