@@ -21,6 +21,12 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
+"LSP client
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 " Text snippets
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -179,6 +185,12 @@ endif
 
 " Disable Preview panel
 set completeopt-=preview
+
+" LSP client
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+nnoremap <F4> :call LanguageClient_contextMenu()<CR>
 
 " vim-fugitive
 nmap <Leader>gs :Gstatus<CR>gg<c-n>
