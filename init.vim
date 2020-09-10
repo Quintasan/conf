@@ -39,17 +39,14 @@ Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
 Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 " Git
-Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/gina.vim'
+Plug 'rhysd/committia.vim'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
@@ -187,16 +184,10 @@ endif
 " Disable Preview panel
 set completeopt-=preview
 
-" LSP client
 let g:LanguageClient_serverCommands = {
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
 nnoremap <F4> :call LanguageClient_contextMenu()<CR>
-
-" vim-fugitive
-nmap <Leader>gs :Gstatus<CR>gg<c-n>
-noremap <Leader>gd :Gdiff<CR>
-nmap <Leader>gc :Gcommit %<CR>
 
 " Goyo
 let g:goyo_width = "60%"
@@ -209,7 +200,7 @@ nnoremap <Leader>l :Goyo<CR>
 nmap ; :Buffers<CR>
 nmap <Leader>o :Files<CR>
 nmap <Leader>t :Tags<CR>
-nmap <Leader>a :Ag<CR>
+nmap <Leader>a :Rg<CR>
 
 "ack.vim
 if executable('ag')
@@ -254,6 +245,9 @@ autocmd FileType make setlocal noexpandtab
 let g:ale_fixers = {
       \    'ruby': ['rubocop'],
       \}
+let g:ale_linters = {
+      \    'ruby': ['rubocop'],
+      \}
 let g:ale_fix_on_save = 1
 
 "haskell-vim
@@ -276,9 +270,27 @@ let g:intero_use_neomake = 0
 " rust.vim
 let g:rustfmt_autosave = 1
 
-" autozimu/LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
+" gina-vim
+nnoremap <silent> <Leader>gs :Gina status<CR>
+nnoremap <silent> <Leader>gc :Gina commit<CR>
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+let s:width_quarter = string(winwidth(0) / 4)
+let s:width_half = string(winwidth(0) / 2)
+
+" Open in vertical split
+call gina#custom#command#option(
+        \ '/\%(branch\|changes\|status\|grep\|log\|reflog\)',
+        \ '--opener', 'vsplit'
+        \)
+
+" Fixed medium width types
+call gina#custom#execute(
+        \ '/\%(changes\|status\|ls\)',
+        \ 'vertical resize ' . s:width_half . ' | setlocal winfixwidth'
+        \)
+
+" Fixed small width special types
+call gina#custom#execute(
+        \ '/\%(branch\)',
+        \ 'vertical resize ' . s:width_quarter . ' | setlocal winfixwidth'
+        \)

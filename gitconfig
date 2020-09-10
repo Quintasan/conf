@@ -36,3 +36,5 @@
   conflictstyle = diff3
 [status]
   showUntrackedFiles = all
+[rerere]
+	enabled = true
